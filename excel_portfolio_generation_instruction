@@ -1,0 +1,60 @@
+This documentation is designed to help a beginner understand how this options portfolio simulation works. It explains the purpose of each sheet, the logic behind the numbers, and the exact Excel commands used to make it work.
+
+### Project Overview
+The goal of this project is to track different option strategies (like Straddles and Strangles) and see how their value changes over time. We use four main sheets that talk to each other to calculate profit and risk.
+
+
+
+### 1. The Portfolio Sheet: Your Trade Log
+This is where you enter your trades. Every time you buy or sell an option, you list it here with its specific details.
+
+**The Logic of Time to Maturity (TTM):**
+Options have an expiration date. To use financial math, we can't just say "30 days left"; we have to turn that into a fraction of a year. This project uses a 360-day financial calendar.
+
+**The Excel Command:**
+If your Expiry Date is in cell L2 and today's date is in a fixed cell Z1, use this formula:
+`=(L2 - $Z$1) / 360`
+This tells the computer exactly what percentage of a year is left until the contract ends.
+
+### 2. The PnL_Calc Sheet: Tracking Your Money
+This sheet calculates your "PV Impact," which is just a fancy way of saying your total profit or loss right now.
+
+**The Logic of Profit and Loss:**
+Your profit is the difference between the current market price and the price you paid, multiplied by how many contracts you have. If you sold the option (a negative position), the math automatically flips to show a gain if the price goes down.
+
+**The Excel Command:**
+If your Current Price is in F2, your Entry Price is in D2, and your Position is in E2, use:
+`=(F2 - D2) * E2`
+This gives you the total dollar amount you have gained or lost on that specific trade.
+
+### 3. The BBG_Greeks Sheet: Measuring Risk
+Greeks are numbers that tell you how sensitive your portfolio is to market changes. 
+
+**The Logic of the Greeks:**
+Delta tells you how much your money changes if the stock price moves $1.
+Gamma tells you how fast your Delta is changing.
+Vega tells you how much your money changes if market volatility (fear) goes up or down.
+Theta tells you how much money you lose every single day just because time is passing.
+
+**The Excel Command:**
+To bring these numbers into your main Portfolio sheet, you use a lookup tool. It looks for the name of the option and pulls the correct Greek value.
+`=XLOOKUP(A2, 'BBG_Greeks'!A:A, 'BBG_Greeks'!C:C)`
+This means: "Find the contract name in A2, search for it in the Greeks sheet, and give me the Delta value from the third column."
+
+
+
+### 4. The PARAM Sheet: The Translation Key
+Mathematical formulas often use Greek symbols or single letters (like 's' for Spot or 'k' for Strike). This sheet acts as a dictionary so anyone reading the file knows exactly which Excel column matches which mathematical variable.
+
+**The Logic:**
+s = PX_LAST (The current price of the stock)
+k = OPT_STRIKE_PX (The price you agreed to buy/sell at)
+r = Cash_rate (The current interest rate)
+tau = TTM (The time left in years)
+sigma = IVOL_MID (The volatility or "riskiness" of the stock)
+
+### How to Use This Portfolio
+First, you enter your trade details in the Portfolio sheet.
+Second, you update the "Valuation Date" to today's date.
+Third, you update the current market prices (PX_LAST).
+Finally, you look at the PnL_Calc sheet to see your "Total" at the top, which shows the sum of all your gains and losses across every strategy.
