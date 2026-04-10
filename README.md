@@ -22,9 +22,13 @@
 
 **2. High-level Description**
 Input: paper_simulation.xlsx with 3 main sheets: portfolio, PnL_Calc, BBG_Greeks
+                  
                   |
+                  
 Processors: 4 python files: greek_calculation.py, greeks_tool.py, pv_calculation.py, pv_calculation_tools.py
+                  
                   |
+                  
 Main Output: my_risk_report_{date}.xlsx, pv_scenario_{date}.xlsx, sensitivity_tables_{date}.xlsx
 Side Output: calculated_price_{date}.xlsx, BBG_Greeks_ref_{date}.xlsx, PnL_Calc_{date}.xlsx
 
