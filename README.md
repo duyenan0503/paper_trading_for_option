@@ -1,5 +1,9 @@
 **Generate and Monitor simple option portfolio with Excel for Paper Trading**
 
+<img width="1570" height="391" alt="image" src="https://github.com/user-attachments/assets/a7e3d194-8cb9-4c86-96b6-d8bbae6ea175" />
+
+<img width="1151" height="673" alt="image" src="https://github.com/user-attachments/assets/4f0b9044-84f8-4fe5-8dd0-06ea61e9ceb4" />
+
 **1. Project Purpose**
 
 * Build a portfolio monitoring tool that combines **risk sensitivities (Greeks)** and **scenario-based valuation (PV analysis)** to track both current exposure and potential PnL under market changes.
