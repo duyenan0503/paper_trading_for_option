@@ -24,16 +24,15 @@ Output: my_risk_report_{date}.xlsx, pv_scenario_{date}.xlsx, sensitivity_tables_
 **3.2. Output sample**
 
 * Risks sensitiviness (Greeks)
-
+my_risk_report_{date}.xlsx
 <img width="1834" height="310" alt="image" src="https://github.com/user-attachments/assets/4531f216-c240-408a-9728-e8a71a2088dc" />
 
 * Scenario-based evaluation
-
+pv_scenario_{date}.xlsx
 <img width="1860" height="370" alt="image" src="https://github.com/user-attachments/assets/f9597a44-f2af-4d74-9c8e-169f4ab2af04" />
 
+sensitivity_tables_{date}.xlsx
 <img width="1151" height="673" alt="image" src="https://github.com/user-attachments/assets/4f0b9044-84f8-4fe5-8dd0-06ea61e9ceb4" />
-
-
 
 
 **4. Instruction**
