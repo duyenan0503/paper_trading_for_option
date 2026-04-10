@@ -1,6 +1,6 @@
 **Generate and Monitor simple option portfolio with Excel for Paper Trading**
 
-**Project Purpose**
+**1. Project Purpose**
 
 * Build a portfolio monitoring tool that combines risk sensitivities (Greeks) and scenario-based valuation (PV analysis) to track both current exposure and potential PnL under market changes.
 * It helps identify directional risk, volatility exposure, and non-linear effects while also simulating how the portfolio performs under different spot and volatility shocks for better risk management and decision-making.
@@ -8,7 +8,7 @@
 * Bloomberg access in Excel is required. 
 
 
-**High-level Description**
+**2. High-level Description**
 Input: paper_simulation.xlsx [sheet: portfolio]
                   |
 Processors: 4 python files: greek_calculation.py, greeks_tool.py, pv_calculation.py, pv_calculation_tools.py
@@ -16,21 +16,25 @@ Processors: 4 python files: greek_calculation.py, greeks_tool.py, pv_calculation
 Output: my_risk_report_{date}.xlsx, pv_scenario_{date}.xlsx, sensitivity_tables_{date}.xlsx
 
 
-**Portfolio sample**
+**3.1. Portfolio sample**
 <img width="1570" height="391" alt="image" src="https://github.com/user-attachments/assets/a7e3d194-8cb9-4c86-96b6-d8bbae6ea175" />
 
 <img width="1600" height="410" alt="image" src="https://github.com/user-attachments/assets/a85f1489-31c4-4834-83a9-5ec75f9f1b0d" />
 
-**Output sample**
+**3.2. Output sample**
+
 * Risks sensitiviness (Greeks)
+
 <img width="1834" height="310" alt="image" src="https://github.com/user-attachments/assets/4531f216-c240-408a-9728-e8a71a2088dc" />
 
 * Scenario-based evaluation
+
 <img width="1860" height="370" alt="image" src="https://github.com/user-attachments/assets/f9597a44-f2af-4d74-9c8e-169f4ab2af04" />
 
 <img width="1151" height="673" alt="image" src="https://github.com/user-attachments/assets/4f0b9044-84f8-4fe5-8dd0-06ea61e9ceb4" />
 
-**Instruction**
+
+**4. Instruction**
 
 **Step 1**: Go to build_port_instruction -> Read excel_port_generation_instruction to understand the logic and how to generate the portfolio on Excel + open paper_simulation.xlsx for reference 
 
