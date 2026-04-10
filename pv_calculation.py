@@ -1,15 +1,8 @@
 from openpyxl.formatting.rule import ColorScaleRule
 import numpy as np
-from openpyxl.reader.excel import load_workbook
-from openpyxl.styles import Font
-from misc import DBConfig
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.ticker import FuncFormatter, StrMethodFormatter
 from product_and_pricing_tool import PVPricing
-from openpyxl import load_workbook
 import os
-from openpyxl.styles import Font, Alignment
 import math
 from datetime import date
 
@@ -18,7 +11,6 @@ curr_dir = os.path.dirname(curr_path)
 parent_dir = os.path.join(curr_dir, os.pardir)
 today_str = date.today().strftime("%Y%m%d")
 today_col = date.today().strftime("%Y/%m/%d")
-
 
 """
 INPUT PARAMETERS
@@ -76,14 +68,12 @@ if missing:
     raise KeyError(f"Required columns missing from DataFrame: {missing}\n"
                    f"Existing columns: {list(df.columns)}")
 
-
 """
 CHECK OPTION
 """
 is_option = df.get("SECURITY_TYP2", "").astype(str).str.lower().eq("option")
 is_put = df.get("OPT_PUT_CALL", "").astype(str).str.upper().str.startswith("P")
 is_call = df.get("OPT_PUT_CALL", "").astype(str).str.upper().str.startswith("C")
-
 
 def to_num(s):
     return pd.to_numeric(s, errors="coerce")
@@ -154,7 +144,6 @@ df.insert(0, "AsOfDate", today_col)
 output_path1 = curr_dir + fr"\outputs\\{today_str}\\calculated_price_{today_str}.xlsx"
 df.to_excel(output_path1, index=False)
 
-#print (df)
 """
 SCENARIO BUILDING
 """
@@ -195,7 +184,7 @@ def scenario_prices(row):
 
     for s_shift in spot_shifts:
 
-        # --- SPOT SHIFT ---
+        # SPOT SHIFT
         if sec_type != "option":
             shifted_spot = spot_fut * (1 + s_shift)
 
@@ -205,7 +194,7 @@ def scenario_prices(row):
             else:
                 shifted_spot = spot * (1 + s_shift)
 
-        # --- VOL LOOP ---
+        # VOL LOOP
         for v_shift in vol_shifts:
 
             # FUTURE: no vol shift
