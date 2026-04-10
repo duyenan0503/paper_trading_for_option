@@ -1,0 +1,54 @@
+PV Calculation & Scenario Analysis (PnL Monitoring)
+
+Purpose: Compute current portfolio value and simulate PnL under different market scenarios (spot & volatility shocks).
+
+1. Input data
+* Load portfolio + reference Greeks + PnL sheet
+* Clean and validate numeric inputs
+
+2.1. Base Pricing (PV₀) (last 3 columns in calculated_price_{date}.xlsx)
+a. Option pricing
+* Call: bs_call_pricing(S, K, r, q, tau, sigma)
+* Put: bs_put_pricing(S, K, r, q, tau, sigma)
+* Meaning: theoretical option value using Black-Scholes
+
+b. Future pricing
+* Formula: F = Spot_fut × exp((r - q) × tau)
+* Meaning: forward-adjusted price
+
+c. Combine PV 
+* Logic: use Call / Put / Future → fallback to market price
+* Output: PV_0_VOL_0
+* Signal: current fair value of each position
+
+2.2. Scenario Generation (in pv_scenario_{date}.xlsx)
+a. Shock grid
+* Spot shifts: -10% → +10%
+* Vol shifts: -5% → +5%
+
+b. Repricing logic
+* Recalculate price under each (spot, vol) combination
+* Compute: Scenario PnL = (New Price - Base PV) × Position × FX
+
+c. Special handling
+* Options:
+- Adjust both spot and volatility
+- Handle intrinsic value if vol ≤ 0
+* Futures:
+- Only spot shift matters
+
+d. Output 
+* 2D grid of PnL scenarios per instrument
+
+2.3. Aggregation & Sensitivity Tables (in sensitivity_tables_{date}.xlsx)
+a. Group by underlying: Sum all positions per underlying asset
+
+b. Matrix format 
+* Rows: spot shocks
+* Columns: volatility shocks
+
+c. Total portfolio: Aggregate across all underlyings
+
+d. Visualization - Apply color scale:
+* Red = loss
+* Green = gain
