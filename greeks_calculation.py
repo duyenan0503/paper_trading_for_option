@@ -1,24 +1,14 @@
-from openpyxl.formatting.rule import ColorScaleRule
-import numpy as np
-from openpyxl.reader.excel import load_workbook
-from openpyxl.styles import Font
-from misc import DBConfig
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.ticker import FuncFormatter, StrMethodFormatter
-from product_and_pricing_tool import PVPricing
-from openpyxl import load_workbook
 import os
 from greeks_tool import GrePricing
-from openpyxl.styles import Font, Alignment
 from datetime import date
-
 
 curr_path = os.path.abspath(__file__)
 curr_dir = os.path.dirname(curr_path)
 parent_dir = os.path.join(curr_dir, os.pardir)
 today_str = date.today().strftime("%Y%m%d")
 today_col = date.today().strftime("%Y/%m/%d")
+
 """
 INPUT PARAMETERS
 """
@@ -52,8 +42,6 @@ missing = [c for c in required_cols if c not in df.columns]
 if missing:
     raise KeyError(f"Required columns missing from DataFrame: {missing}\n"
                    f"Existing columns: {list(df.columns)}")
-
-
 
 cols_to_fix = [col_sec, col_opt, col_mifid]
 for c in cols_to_fix:
@@ -114,7 +102,7 @@ def compute_row_vega(row):
     return vega
 df["Vega"] = df.apply(compute_row_vega, axis=1)
 
-#shift for 1 day
+#Shift for 1 day
 def compute_row_theta(row):
     theta = GrePricing.bs_theta(
         sec_type=row[col_sec],
@@ -131,7 +119,7 @@ def compute_row_theta(row):
     return theta
 df["Theta"] = df.apply(compute_row_theta, axis=1)
 
-#math gamma
+#Math Gamma
 def compute_row_gamma(row):
     gamma = GrePricing.bs_gamma(
         sec_type=row[col_sec],
@@ -185,5 +173,5 @@ cols_to_show = [
     "Gamma_Cash"
 ]
 
-
+#Export risk report
 df[cols_to_show].to_excel(curr_dir + fr'\outputs\\{today_str}\\my_risk_report_{today_str}.xlsx', index=False)
