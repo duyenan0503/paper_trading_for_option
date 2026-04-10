@@ -5,6 +5,7 @@
 
 <img width="1151" height="673" alt="image" src="https://github.com/user-attachments/assets/4f0b9044-84f8-4fe5-8dd0-06ea61e9ceb4" />
 
+
 **1. Project Purpose**
 
 * Build a portfolio monitoring tool that combines **risk sensitivities (Greeks)** and **scenario-based valuation (PV analysis)** to track both current exposure and potential PnL under market changes.
@@ -20,6 +21,7 @@
 * Refer to the attached photos and instructions to create the porfolio and generate output reports for the risk and present value impact. 
 * Bloomberg access in Excel is required. 
 * The logic behind calculation of options & futures and greeks are explained in separate documents named **option_and_future_calc_explain** and **greeks_calc_explain** in build_port_instruction. 
+
 
 **2. High-level Description**
 
@@ -38,6 +40,7 @@
          **Side Output**: calculated_price_{date}.xlsx, BBG_Greeks_ref_{date}.xlsx, PnL_Calc_{date}.xlsx
 
 
+
 **3. Instruction**
 
 **Step 1**: Go to build_port_instruction -> Read excel_port_generation_instruction, option_and_future_calc_explain, greeks_calc_explain to understand the logic and how to generate the portfolio on Excel **+** open paper_simulation.xlsx for reference 
@@ -51,6 +54,8 @@
 
 **Disclaimer**: This project is for reference purpose only. It does not constitute investment advice or recommendations.
 
+
+
 **4.1. Portfolio sample**
 <img width="1570" height="391" alt="image" src="https://github.com/user-attachments/assets/a7e3d194-8cb9-4c86-96b6-d8bbae6ea175" />
 
@@ -59,6 +64,7 @@
 Excel commands are also provided in build_port_instruction/paper_simulation.xlsx
 
 <img width="1891" height="670" alt="image" src="https://github.com/user-attachments/assets/443b6d6d-4d16-43bb-b4b5-56f93afc00b3" />
+
 
 **4.2. Main Output sample**
 
@@ -74,6 +80,7 @@ pv_scenario_{date}.xlsx
 
 sensitivity_tables_{date}.xlsx
 <img width="1151" height="673" alt="image" src="https://github.com/user-attachments/assets/4f0b9044-84f8-4fe5-8dd0-06ea61e9ceb4" />
+
 
 **4.3. Side Output sample**
 
