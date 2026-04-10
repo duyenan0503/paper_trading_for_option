@@ -1,0 +1,42 @@
+Greeks Calculation (Risk Monitoring)
+
+Purpose: Calculate key risk sensitivities (Greeks) for each position to monitor how the portfolio reacts to market changes.
+
+Logic:
+1. Input data
+* Read portfolio from Excel (spot, strike, rate, volatility, time to maturity, position, etc.)
+* Ensure required columns exist → error if missing
+
+2.1. Delta
+* Formula: bs_delta(...) × Position
+* Meaning: sensitivity of option price to underlying price change
+* Signal: directional exposure (positive = long market, negative = short)
+
+2.2. Delta Cash
+* Formula: bs_delta_cash(...) × Position
+* Meaning: dollar impact of a 1-unit move in underlying
+* Signal: actual PnL change in currency terms
+
+2.3. Vega
+* Formula: bs_vega(...) × Position
+* Meaning: sensitivity to volatility changes
+* Signal: exposure to implied volatility (positive = benefits from higher vol)
+
+2.4. Theta
+* Formula: bs_theta(...) × Position
+* Meaning: time decay (1-day impact)
+* Signal: carry effect (usually negative for long options)
+
+2.5. Gamma
+* Formula: bs_gamma(...) × Position
+* Meaning: curvature of delta (how delta changes when spot moves)
+* Signal: convexity (high gamma = more sensitivity to large moves)
+
+2.6. Gamma Cash
+* Formula: bs_gamma_cash(...) × Position
+* Meaning: dollar impact of second-order price movement
+* Signal: non-linear PnL risk
+
+3. Output
+* Add valuation date
+* Export risk report with all Greeks per instrument
