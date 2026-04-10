@@ -1,0 +1,97 @@
+Portfolio Sheet - Logic and Excel Formulas Explanation
+
+A. Overview
+
+The `portfolio` sheet stores all option positions used in the simulation.
+Each row represents one option contract belonging to a trading strategy (e.g., straddle, strangle, butterfly).
+
+The sheet performs three main tasks:
+
+1. Store the option contract identifier and strategy.
+2. Pull market data (price, volatility, Greeks) from Bloomberg.
+3. Compute derived values such as **time to maturity and volatility interpolation weights**.
+
+Each row therefore represents a single option leg in the portfolio.
+
+---
+
+B. Column Logic
+B.1. Manual Input
+
+1. Column A – Security Identifier
+This column contains the Bloomberg ticker for the option contract.
+Example: AMZN US 05/15/26 P195 Equity
+
+Logic:
+* Identifies the exact option instrument.
+* Used as input for Bloomberg Excel formulas.
+
+2. Column B – Strategy Name
+This column indicates the option strategy the contract belongs to.
+Example: Long Straddle, Short Strangle, Long Butterfly
+
+Logic:
+* Groups multiple option legs into one strategy.
+* Helps identify the portfolio structure.
+
+3. Column I – Quantity
+This column stores the number of option contracts held.
+Example: 100, 200, -150
+
+Logic:
+* Positive value → long position
+* Negative value → short position
+
+--
+
+B.2. Derived Calculations
+
+1. Time to Maturity (Column O)
+Formula used: =IFERROR((L2-TODAY())/360,0)
+
+Signal explanation:
+*IFERROR handles possible errors.
+* L2 refers to the expiration date cell.
+* TODAY() returns the current system date.
+* /360 converts days into years.
+
+Logic: the formula calculates the remaining time between today and expiration, then converts it into an annual fraction using the 360-day financial convention. If the date is missing or invalid, the formula returns 0.
+
+2. Volatility Interpolation Weight (Column P)
+
+Formula used: =IFERROR(IF(AND(I2="VOLI",O2<>0),0.5/(SQRT(O2/360)+SQRT((O2+30)/360)),""),"")
+
+Signal explanation:
+* IFERROR prevents display of Excel errors.
+* I2="VOLI" checks whether option underlying is volatility future.
+* O2<>0 checks that maturity is not zero, to ensure it is option or not
+* SQRT calculates square roots.
+
+Logic: 
+* The formula first checks whether the row contains volitlity future as underlying of option. If both conditions are true, it calculates a smoothing weight based on the square root of current maturity and the next maturity bucket. This produces a more stable implied volatility estimate across maturities. If conditions are not met, the cell remains blank.
+* The square-root weighting is used because implied volatility changes nonlinearly across expiration dates, so smoothing avoids abrupt jumps between maturity points.
+* Blank output is intentionally used when interpolation is unnecessary, so only relevant rows perform the calculation.
+* Error handling ensures that incomplete Bloomberg data does not interrupt the model.
+
+--
+
+B.3. Market Data Columns 
+Several columns in the sheet use Bloomberg formulas to retrieve market information such as option types, option premium, strike price, implied volatility, ... (the rest columns) 
+
+--- 
+
+C. Portfolio Structure
+
+Each option strategy is composed of multiple rows (legs).
+
+---
+
+D. Summary of Sheet Workflow
+
+1. User input option tickers and quantities.
+2. Bloomberg formulas retrieve market data and Greeks.
+3. Excel computes:
+   * time to maturity
+   * volatility interpolation factors
+4. These outputs are used later in the PnL_Calc sheet for portfolio risk and PnL calculations.
+
