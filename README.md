@@ -2,6 +2,7 @@
 
 <img width="1570" height="391" alt="image" src="https://github.com/user-attachments/assets/a7e3d194-8cb9-4c86-96b6-d8bbae6ea175" />
 
+
 <img width="1151" height="673" alt="image" src="https://github.com/user-attachments/assets/4f0b9044-84f8-4fe5-8dd0-06ea61e9ceb4" />
 
 **1. Project Purpose**
@@ -21,11 +22,14 @@
 * The logic behind calculation of options & futures and greeks are explained in separate documents named **option_and_future_calc_explain** and **greeks_calc_explain** in build_port_instruction. 
 
 **2. High-level Description**
+
 Input: paper_simulation.xlsx with 3 main sheets: portfolio, PnL_Calc, BBG_Greeks
+
                   |
                   V
                   
 Processors: 4 python files: greek_calculation.py, greeks_tool.py, pv_calculation.py, pv_calculation_tools.py
+                  
                   |
                   V
                   
