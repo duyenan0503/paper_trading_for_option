@@ -34,6 +34,8 @@ Output: my_risk_report_{date}.xlsx, pv_scenario_{date}.xlsx, sensitivity_tables_
 <img width="1151" height="673" alt="image" src="https://github.com/user-attachments/assets/4f0b9044-84f8-4fe5-8dd0-06ea61e9ceb4" />
 
 
+
+
 **4. Instruction**
 
 **Step 1**: Go to build_port_instruction -> Read excel_port_generation_instruction to understand the logic and how to generate the portfolio on Excel + open paper_simulation.xlsx for reference 
