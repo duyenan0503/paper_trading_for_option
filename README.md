@@ -20,7 +20,7 @@
 **Note:**
 * Refer to the attached photos and instructions to create the porfolio and generate output reports for the risk and present value impact. 
 * Bloomberg access in Excel is required. 
-* The logic behind calculation of options & futures and greeks are explained in separate documents named **option_and_future_calc_explain** and **greeks_calc_explain** in build_port_instruction. 
+* The logic behind calculation of options & futures and greeks are explained in separate documents named **pv_calc_explain** and **greeks_calc_explain** in build_port_instruction. 
 
 
 **2. High-level Description**
@@ -43,7 +43,7 @@
 
 **3. Instruction**
 
-**Step 1**: Go to build_port_instruction -> Read excel_port_generation_instruction, option_and_future_calc_explain, greeks_calc_explain to understand the logic and how to generate the portfolio on Excel **+** open paper_simulation.xlsx for reference 
+**Step 1**: Go to build_port_instruction -> Read excel_port_generation_instruction, pv_calc_explain, greeks_calc_explain to understand the logic and how to generate the portfolio on Excel **+** open paper_simulation.xlsx for reference 
 
 **Step 2**: Run 4 python files: greeks_tool.py, greek_calculation.py, pv_calculation_tools.py, pv_calculation.py as the major codes on Python (e.g: PyCharm)
 
