@@ -44,6 +44,7 @@
 **3. Instruction**
 
 **Step 1: Review Methodology**
+
 Before running the scripts, navigate to the /build_port_instruction folder to understand the underlying logic:
 * Read excel_port_generation_instruction for portfolio setup.
 * Review pv_calc_explain and greeks_calc_explain for the mathematical frameworks used.
@@ -54,6 +55,7 @@ Before running the scripts, navigate to the /build_port_instruction folder to un
 * pv_calculation_tools.py and pv_calculation.py are used to compute current portfolio value and simulate PnL under different market scenarios (spot & volatility shocks). It also provides the snapshot for 
 
 **Step 3: Analyze Results**
+
 Find your generated reports in the /outputs directory:
 
 **Primary Reports:**
