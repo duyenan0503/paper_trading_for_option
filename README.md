@@ -31,26 +31,38 @@
                                                   |
                                                   V
                                                   
-         **Processors**: 4 python files: greek_calculation.py, greeks_tool.py, pv_calculation.py, pv_calculation_tools.py
+         **Processors**: 4 python files: Group A [greek_calculation.py, greeks_tool.py], Group B [pv_calculation.py, pv_calculation_tools.py]
                                                   
                                                   |
                                                   V
                                                   
-         ** Main Output**: my_risk_report_{date}.xlsx, pv_scenario_{date}.xlsx, sensitivity_tables_{date}.xlsx
-         **Side Output**: calculated_price_{date}.xlsx, BBG_Greeks_ref_{date}.xlsx, PnL_Calc_{date}.xlsx
+         ** Main Output**: my_risk_report_{date}.xlsx (A), pv_scenario_{date}.xlsx (B), sensitivity_tables_{date}.xlsx (B) 
+         **Side Output**: calculated_price_{date}.xlsx (B), BBG_Greeks_ref_{date}.xlsx (B), PnL_Calc_{date}.xlsx (B)
 
 
 
 **3. Instruction**
 
-**Step 1**: Go to build_port_instruction -> Read excel_port_generation_instruction, pv_calc_explain, greeks_calc_explain to understand the logic and how to generate the portfolio on Excel **+** open paper_simulation.xlsx for reference 
+**Step 1: Review Methodology**
+Before running the scripts, navigate to the /build_port_instruction folder to understand the underlying logic:
+* Read excel_port_generation_instruction for portfolio setup.
+* Review pv_calc_explain and greeks_calc_explain for the mathematical frameworks used.
 
 **Step 2**: Run 4 python files: greeks_tool.py, greek_calculation.py, pv_calculation_tools.py, pv_calculation.py as the major codes on Python (e.g: PyCharm)
 
 * greek_calculation and greeks_tool are used to calculate key risk sensitivities (Greeks) for each position to monitor how the portfolio reacts to market changes. 
 * pv_calculation_tools.py and pv_calculation.py are used to compute current portfolio value and simulate PnL under different market scenarios (spot & volatility shocks). It also provides the snapshot for 
 
-**Step 3:**  Go to **outputs** -> my_risk_report_{date}.xlsx from greeks_tool.py and greek_caclulation.py **+** sensitivity_tables_{date}.py and pv_sceraios_{date}.py from  pv_calculation_tools.py and pv_calculation.py **+** calculated_price_{date}.xlsx, BBG_Greeks_ref_{date}.xlsx, PnL_Calc_{date}.xlsx
+**Step 3: Analyze Results**
+Find your generated reports in the /outputs directory:
+
+**Primary Reports:**
+* my_risk_report_{date}.xlsx: Summary of portfolio risk exposures.
+* sensitivity_tables_{date}.xlsx: Detailed risk grids across different market moves.
+* pv_scenario_{date}.xlsx: PnL snapshots under various stress-test scenarios.
+
+**Reference Logs:**
+* calculated_price_{date}.xlsx, BBG_Greeks_ref_{date}.xlsx, and PnL_Calc_{date}.xlsx.
 
 **Disclaimer**: This project is for reference purpose only. It does not constitute investment advice or recommendations.
 
